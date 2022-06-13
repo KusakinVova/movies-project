@@ -3,7 +3,7 @@ import './Movies.css';
 
 function Movies (props) {
   return (
-    <div className="Movies row">
+    <div className="Movies">
     {
       props.movies.map(movie =>
         <Movie

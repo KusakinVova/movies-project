@@ -10,17 +10,21 @@ function Movie (props) {
   } = props.movie;
 
   return (
-    <div className="col s6 m3">
       <div className="card" id={id}>
         <div className="card-image waves-effect waves-block waves-light">
-          <img className="activator" src={poster} alt={title} />
+          {
+            poster === 'N/A' ?
+              <img className="activator" src={"https://via.placeholder.com/300x423.png?text="+ title} alt={title} />
+            :
+              <img className="activator" src={poster} alt={title} />
+          }
+
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">{title}</span>
           <p>{year} <span className="right">{type}</span></p>
         </div>
       </div>
-    </div>
   );
 }
 export {Movie};

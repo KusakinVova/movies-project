@@ -5,14 +5,13 @@ import { Preloader } from "../components/Preloader";
 class Main extends React.Component{
 
   state = {
-    movies: [],
-    loading: true
+    movies: []
   }
 
   componentDidMount(){
     fetch('http://www.omdbapi.com/?apikey=a1171f9e&s=matrix')
       .then(response => response.json())
-      .then(data => {this.setState({movies: data.Search, loading: false}); console.log(data.Search);  });
+      .then(data => {this.setState({movies: data.Search}); console.log(data.Search);  });
   }
 
   render(){
@@ -20,10 +19,10 @@ class Main extends React.Component{
     return (
       <main className="content container">
         {
-          loading ?
-            <Preloader text="Loading..." />
-            :
+          movies.length ?
             <Movies movies={movies} />
+            :
+            <Preloader text="Loading..." />
         }
       </main>
     )
