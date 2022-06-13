@@ -1,0 +1,11 @@
+.search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.movie-types {
+  gap: 20px 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
