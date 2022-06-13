@@ -15,7 +15,7 @@ class Main extends React.Component{
   }
 
   render(){
-    const {movies, loading} = this.state;
+    const {movies} = this.state;
     return (
       <main className="content container">
         {
