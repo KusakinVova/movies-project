@@ -7,7 +7,7 @@ function Movie (props) {
     Year:  year,
     Type: type,
     Poster: poster
-  } = props.movie;
+  } = props;
 
   return (
       <div className="card" id={id}>
@@ -18,7 +18,6 @@ function Movie (props) {
             :
               <img className="activator" src={poster} alt={title} />
           }
-
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">{title}</span>

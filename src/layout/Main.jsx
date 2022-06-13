@@ -9,6 +9,7 @@ class Main extends React.Component{
     movies: [],
     search: 'matrix',
     typemovie: '',
+    loading: true,
   }
 
   componentDidMount(){
@@ -16,22 +17,25 @@ class Main extends React.Component{
   }
 
   searchMovies = (str, typemovie) => {
+    this.setState({loading: true});
     fetch(`http://www.omdbapi.com/?apikey=a1171f9e&s=${str}${ typemovie !== '' ? `&type=${typemovie}` : ''}`)
       .then(response => response.json())
-      .then(data => {this.setState({movies: data.Search}); console.log(data.Search);  });
+      .then(data => {
+        this.setState({movies: data.Search, loading: false});
+        // console.log(data.Search);
+      });
   }
 
   render(){
-    const {movies, search, typemovie} = this.state;
+    const {movies, search, typemovie, loading} = this.state;
     return (
       <main className="content container">
         <Search searchMovies={this.searchMovies} search={search} typemovie={typemovie} />
-        {
-          movies.length ?
-            <Movies movies={movies} />
-            :
-            <Preloader text="Loading..." />
-        }
+        { loading ? (
+          <Preloader text="Loading..." />
+          ) : (
+          <Movies movies={movies} />
+        )}
       </main>
     )
   }
