@@ -25,6 +25,10 @@ class Main extends React.Component{
       .then(data => {
         this.setState({movies: data.Search, loading: false});
         // console.log(data.Search);
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({loading: false});
       });
   }
 
