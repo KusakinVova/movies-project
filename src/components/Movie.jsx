@@ -14,9 +14,9 @@ function Movie (props) {
         <div className="card-image waves-effect waves-block waves-light">
           {
             poster === 'N/A' ?
-              <img className="activator" src={"https://via.placeholder.com/300x423.png?text="+ title} alt={title} />
+              <img className="card-activator" src={"https://via.placeholder.com/300x423.png?text="+ title} alt={title} />
             :
-              <img className="activator" src={poster} alt={title} />
+              <img className="card-activator" src={poster} alt={title} />
           }
         </div>
         <div className="card-content">
