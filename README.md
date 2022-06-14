@@ -1,5 +1,7 @@
 # Simple react project
 
+site - https://kusakinvova.github.io/movies-project/
+
 ## Stack
 React
 
