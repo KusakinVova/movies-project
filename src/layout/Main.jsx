@@ -1,49 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Movies } from "../components/Movies";
 import { Preloader } from "../components/Preloader";
 import { Search } from "../components/Search";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-class Main extends React.Component{
+function Main(){
+  const [movies, setMovies] = useState([]);
+  const [search] = useState('matrix');
+  const [typemovie] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  state = {
-    movies: [],
-    search: 'matrix',
-    typemovie: '',
-    loading: true,
-  }
-
-  componentDidMount(){
-    this.searchMovies(this.state.search, this.state.typemovie);
-  }
-
-  searchMovies = (str, typemovie) => {
-    this.setState({loading: true});
+  const searchMovies = (str, typemovie) => {
+    setLoading(true);
     fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${ typemovie !== '' ? `&type=${typemovie}` : ''}`)
       .then(response => response.json())
       .then(data => {
-        this.setState({movies: data.Search, loading: false});
+        setMovies(data.Search)
+        setLoading(false);
         // console.log(data.Search);
       })
       .catch((err) => {
         console.error(err);
-        this.setState({loading: false});
+        setLoading(false);
       });
   }
 
-  render(){
-    const {movies, search, typemovie, loading} = this.state;
-    return (
-      <main className="content container">
-        <Search searchMovies={this.searchMovies} search={search} typemovie={typemovie} />
-        { loading ? (
-          <Preloader text="Loading..." />
-          ) : (
-          <Movies movies={movies} />
-        )}
-      </main>
-    )
-  }
+  useEffect(() => {
+      searchMovies(search, typemovie);
+  }, []);
+
+  return (
+    <main className="content container">
+      <Search searchMovies={searchMovies} search={search} typemovie={typemovie} />
+      { loading ? <Preloader text="Loading..." /> : <Movies movies={movies} />}
+    </main>
+  )
+
 }
+
 export {Main};
