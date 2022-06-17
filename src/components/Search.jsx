@@ -2,12 +2,9 @@ import React, {useState} from "react";
 import './Search.css';
 
 function Search (props) {
+  const {searchMovies = Function.prototype} = props;
   const [search, setSearch] = useState(props.search);
   const [typemovie, setTypemovie] = useState(props.typemovie);
-
-  const searchMovies = (search, typemovie) => {
-    props.searchMovies(search, typemovie);
-  }
 
   const handleFilter = (event) => {
     setTypemovie(event.target.value);
