@@ -1,5 +1,5 @@
-function Preloader (props) {
-  const {text} = props;
+import PropTypes from "prop-types";
+function Preloader({ text }) {
   return (
     <div>
       <h3>{text}</h3>
@@ -9,4 +9,9 @@ function Preloader (props) {
     </div>
   );
 }
-export {Preloader};
+
+Preloader.propTypes = {
+  text: PropTypes.string,
+};
+
+export { Preloader };
